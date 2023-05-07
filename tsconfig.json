@@ -20,8 +20,9 @@
     "isolatedModules": true,
     "paths": {
       "payload/generated-types": [
-        "./payload-types.ts"
-      ]
+        "./payload-types.ts",
+      ],
+      "@/*": ["./*"]
     },
     "noEmit": true,
     "plugins": [
