@@ -25,6 +25,7 @@
     "@vercel/edge": "^0.1.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mongodb-client-encryption": "^2.7.1",
     "next": "^13.2.4-canary.6",
     "payload": "^1.6.32",
     "payload-admin-bar": "^1.0.5",
