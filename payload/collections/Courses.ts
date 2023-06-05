@@ -6,6 +6,7 @@ import { MediaBlock } from '../blocks/Media';
 import { slugField } from '../fields/slug';
 import { regenerateStaticPage } from '../utilities/regenerateStaticPage';
 import ProductLinker from "../../components/ProductLinker"
+import { CourseModule } from '../blocks/CourseModule';
 
 export const Courses: CollectionConfig = {
   slug: 'courses',
@@ -48,6 +49,14 @@ export const Courses: CollectionConfig = {
             Field: ProductLinker,
           },
         },
+      },
+      {
+        name: 'modules',
+        type: 'blocks',
+        required: true,
+        blocks: [
+          CourseModule
+        ]
       },
     slugField(),
   ]
