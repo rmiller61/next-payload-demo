@@ -1,17 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import Stripe from "stripe"
 
-
-
 const stripeFunction = async (req: NextApiRequest, res: NextApiResponse) => {
-    const stripe = new Stripe(
-        "sk_test_51MnnufBIScIc7Y7Pkh0DMlaNSJGlvknL03f0xCT21eNnTnekt9sfKu1GSoEYa1oCs0pmYaE9C5OtbDOGLZ9WtrRL00SAyHqERq",
-        {
-          apiVersion: "2022-11-15",
-          typescript: true,
-        }
-      )
     try {
+        if (!process.env.STRIPE_SECRET_KEY) {
+            throw new Error('Stripe secret key is not defined.');
+        }
+        const stripe = new Stripe(
+            process.env.STRIPE_SECRET_KEY,
+            {
+              apiVersion: "2022-11-15",
+              typescript: true,
+            }
+          )    
         const { data: products } = await stripe.products.list()
         return res.status(200).json({ products })
     } catch (err) {
