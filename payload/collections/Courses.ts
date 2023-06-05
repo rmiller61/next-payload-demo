@@ -7,6 +7,7 @@ import { slugField } from '../fields/slug';
 import { regenerateStaticPage } from '../utilities/regenerateStaticPage';
 import ProductLinker from "../../components/ProductLinker"
 import { CourseModule } from '../blocks/CourseModule';
+import richText from "../fields/richText";
 
 export const Courses: CollectionConfig = {
   slug: 'courses',
@@ -34,6 +35,12 @@ export const Courses: CollectionConfig = {
   },
   fields: [
     {
+      name: 'media',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
+    {
       name: 'title',
       type: 'text',
       required: true,
@@ -54,11 +61,37 @@ export const Courses: CollectionConfig = {
         },
       },
       {
-        name: 'modules',
-        type: 'blocks',
+        name: 'chapters',
+        type: 'array',
         required: true,
-        blocks: [
-          CourseModule
+        labels: {
+          singular: 'Chapter',
+          plural: 'Chapters',
+        },
+        fields: [
+          {
+            name: 'title',
+            type: 'text',
+            required: true,
+          },
+          {
+            name: 'vimeoLink',
+            type: 'text',
+            required: true,
+          },
+          richText({
+            name: "description",
+          }),
+          /**{
+            name: "videoLink",
+            label: "Vimeo Link",
+            type: "ui",
+            admin: {
+              components: {
+                Field: Video,
+              },
+            },
+          },**/
         ]
       },
       {
