@@ -22,7 +22,10 @@ export const Courses: CollectionConfig = {
     },
   },
   access: {
-    read: publishedOnly,
+    create: () => true,
+    read: () => true,
+    update: () => true,
+    delete: () => true,
   },
   hooks: {
     afterChange: [
@@ -42,9 +45,9 @@ export const Courses: CollectionConfig = {
     {
         name: "product",
         label: "Stripe Product",
-        type: "ui",
+        type: "json",
+        required: true,
         admin: {
-          position: "sidebar",
           components: {
             Field: ProductLinker,
           },
@@ -57,6 +60,15 @@ export const Courses: CollectionConfig = {
         blocks: [
           CourseModule
         ]
+      },
+      {
+        name: 'published', // required
+        type: 'checkbox', // required
+        label: 'Check to publish this course',
+        defaultValue: false,
+        admin: {
+          position: 'sidebar',
+        }
       },
     slugField(),
   ]

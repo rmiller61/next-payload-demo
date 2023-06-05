@@ -14,10 +14,15 @@ export const CourseModule: Block = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'vimeoLink',
+      type: 'text',
+      required: true,
+    },
     richText({
       name: "description",
     }),
-    {
+    /**{
       name: "videoLink",
       label: "Vimeo Link",
       type: "ui",
@@ -26,6 +31,6 @@ export const CourseModule: Block = {
           Field: Video,
         },
       },
-    },
+    },**/
   ]
 }
