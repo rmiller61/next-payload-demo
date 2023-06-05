@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react"
 import AsyncSelect from "react-select/async"
 import Stripe from "stripe"
+import classes from './index.module.scss';
 
 type Option = {
   label: string
@@ -13,9 +14,15 @@ type FetchedProducts = {
   products: Stripe.Product[]
 }
 
-const ProductLinker: React.FC = () => {
+type Props = {
+  label: string
+}
+
+const ProductLinker: React.FC = ({label}: Props) => {
   return (
-    <AsyncSelect
+    <div className={classes.productLinker}>
+      <label className="field-label">{label}</label>
+      <AsyncSelect
       cacheOptions
       defaultOptions
       loadOptions={async () => {
@@ -31,6 +38,7 @@ const ProductLinker: React.FC = () => {
         return products
       }}
     />
+    </div>
   )
 }
 
