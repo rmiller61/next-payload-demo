@@ -7,9 +7,6 @@ import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
 import { Media } from './collections/Media';
 import { Courses } from './collections/Courses';
-import { stripeREST } from "./routes/stripe"
-
-const mockModulePath = path.resolve(__dirname, "mocks/serverModule.js")
 
 const adapter = s3Adapter({
   config: {
@@ -25,19 +22,6 @@ const adapter = s3Adapter({
 })
 
 export default buildConfig({
-  admin: {
-    webpack: (config) => ({
-      ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve?.alias,
-          stripe: mockModulePath,
-          [path.resolve(__dirname, "./routes/stripe")]: mockModulePath,
-        },
-      },
-    }),
-  },
   collections: [
     Pages,
     Users,
@@ -53,19 +37,6 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
-  endpoints: [
-    {
-      path: "/stripe/rest",
-      method: "get",
-      handler: (req, res, next) => {
-        stripeREST({
-          req,
-          res,
-          next,
-        })
-      },
-    },
-  ],
   plugins: [
     cloudStorage({
       collections: {
