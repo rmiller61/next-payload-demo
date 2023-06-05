@@ -5,6 +5,7 @@ import { Content } from '../blocks/Content';
 import { MediaBlock } from '../blocks/Media';
 import { slugField } from '../fields/slug';
 import { regenerateStaticPage } from '../utilities/regenerateStaticPage';
+import ProductLinker from "../../components/ProductLinker"
 
 export const Courses: CollectionConfig = {
   slug: 'courses',
@@ -37,6 +38,17 @@ export const Courses: CollectionConfig = {
         name: 'description',
         type: 'richText',
     },
+    {
+        name: "product",
+        label: "Stripe Product",
+        type: "ui",
+        admin: {
+          position: "sidebar",
+          components: {
+            Field: ProductLinker,
+          },
+        },
+      },
     slugField(),
   ]
 }
