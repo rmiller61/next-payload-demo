@@ -6,6 +6,7 @@ import { MainMenu } from './globals/MainMenu';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3';
 import { Media } from './collections/Media';
+import { Courses } from './collections/Courses';
 
 const adapter = s3Adapter({
   config: {
@@ -24,7 +25,8 @@ export default buildConfig({
   collections: [
     Pages,
     Users,
-    Media
+    Media,
+    Courses,
   ],
   globals: [
     MainMenu,
